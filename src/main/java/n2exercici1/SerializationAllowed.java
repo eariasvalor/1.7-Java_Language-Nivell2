@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface SerializationAllowed {
 
-    String dir("src/main/resources/data");
-    String fileName(" serializedFile.json");
+    String dir() default "src/main/resources/data";
+    String fileName() default "serializedFile.json";
 }
