@@ -4,6 +4,7 @@ package n2exercici1;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,11 +31,19 @@ public final class JsonSerializing {
         String fileName = ann.fileName().isBlank() ? c.getSimpleName() + ".json" : ann.fileName();
 
         Path outDir = Paths.get(dir);
-        Files.createDirectories(outDir);
+        try {
+            Files.createDirectories(outDir);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         Path out = outDir.resolve(fileName);
 
-        MAPPER.writeValue(out.toFile(), object);
+        try {
+            MAPPER.writeValue(out.toFile(), object);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return out;
     }
