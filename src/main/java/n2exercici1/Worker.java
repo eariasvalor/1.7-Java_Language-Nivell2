@@ -1,11 +1,15 @@
 package n2exercici1;
 
+
+
+@SerializationAllowed(dir = "src/main/resources/data", fileName = "worker.json")
 public class Worker {
     private String name;
     private String surname;
     private double priceHour;
 
-    public Worker() {}
+    public Worker() {
+    }
 
     public Worker(String name, String surname, double priceHour){
         this.name = name;
