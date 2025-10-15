@@ -26,7 +26,6 @@ public final class JsonSerializingTool {
             throw new IllegalStateException("The class " + c.getName() + " is not annotated with @SerializationAnnotation");
         }
 
-
         String dir = annotation.dir();
         String fileName = annotation.fileName().isBlank() ? c.getSimpleName() + ".json" : annotation.fileName();
 
@@ -34,7 +33,7 @@ public final class JsonSerializingTool {
         try {
             Files.createDirectories(outDir);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error: " + e.getMessage());
         }
 
         Path out = outDir.resolve(fileName);
@@ -42,7 +41,7 @@ public final class JsonSerializingTool {
         try {
             MAPPER.writeValue(out.toFile(), object);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error: " + e.getMessage());
         }
 
         return out;
