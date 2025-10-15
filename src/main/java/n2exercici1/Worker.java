@@ -64,7 +64,7 @@ public class Worker {
 
             if (arg instanceof Number n) {
                 if (n.doubleValue() <= 0) {
-                    throw new IllegalArgumentException("Invalid data: number must be > 0.");
+                    throw new IllegalArgumentException("Invalid data: number must be greater than 0.");
                 }
             }
         }
