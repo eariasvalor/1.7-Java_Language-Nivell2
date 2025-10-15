@@ -2,7 +2,7 @@ package n2exercici1;
 
 
 
-@SerializationAllowed(dir = "src/main/resources/data", fileName = "worker.json")
+@SerializationAnnotation
 public class Worker {
     private String name;
     private String surname;

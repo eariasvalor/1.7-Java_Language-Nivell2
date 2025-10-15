@@ -9,10 +9,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public final class JsonSerializing {
+public final class JsonSerializingTool {
     private static final ObjectMapper MAPPER = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
-    private JsonSerializing() {
+    private JsonSerializingTool() {
     }
 
     public static Path serialize(Object object) {
@@ -21,14 +21,14 @@ public final class JsonSerializing {
         }
 
         Class<?> c = object.getClass();
-        SerializationAllowed ann = c.getAnnotation(SerializationAllowed.class);
-        if (ann == null) {
-            throw new IllegalStateException("The class " + c.getName() + " is not annotated with @JsonSerializable");
+        SerializationAnnotation annotation = c.getAnnotation(SerializationAnnotation.class);
+        if (annotation == null) {
+            throw new IllegalStateException("The class " + c.getName() + " is not annotated with @SerializationAnnotation");
         }
 
 
-        String dir = ann.dir();
-        String fileName = ann.fileName().isBlank() ? c.getSimpleName() + ".json" : ann.fileName();
+        String dir = annotation.dir();
+        String fileName = annotation.fileName().isBlank() ? c.getSimpleName() + ".json" : annotation.fileName();
 
         Path outDir = Paths.get(dir);
         try {

@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface SerializationAllowed {
+public @interface SerializationAnnotation {
 
     String dir() default "src/main/resources/data";
     String fileName() default "serializedFile.json";
